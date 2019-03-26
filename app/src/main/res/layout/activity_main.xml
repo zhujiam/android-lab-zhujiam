@@ -26,9 +26,53 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="#1000"
-            android:gravity="right"
+            android:gravity="end"
             android:text=""
             android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn_arc"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:text="arc"
+            android:textSize="18sp"/>
+
+        <Button
+            android:id="@+id/btn_sin"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:text="sin"
+            android:textSize="18sp"/>
+
+        <Button
+            android:id="@+id/btn_cos"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:text="cos"
+            android:textSize="18sp"/>
+
+        <Button
+            android:id="@+id/btn_tan"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="tan"
+            android:textSize="18sp"/>
 
     </LinearLayout>
 
@@ -49,21 +93,21 @@
             android:textSize="18sp"/>
 
         <Button
-            android:id="@+id/btn_left"
+            android:id="@+id/btn_square"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
-            android:text="("
+            android:text="x²"
             android:textSize="18sp"/>
 
         <Button
-            android:id="@+id/btn_right"
+            android:id="@+id/btn_pi"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
-            android:text=")"
+            android:text="π"
             android:textSize="18sp"/>
 
         <Button
@@ -194,7 +238,7 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
             android:text="3"
             android:textSize="18sp"/>
 
@@ -239,7 +283,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
-            android:text="."
+            android:text="@string/dot_sign"
             android:textSize="18sp"/>
 
         <Button
@@ -247,7 +291,7 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="="
+            android:text="@string/equal_sign"
             android:textSize="18sp"/>
 
     </LinearLayout>

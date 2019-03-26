@@ -11,7 +11,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView processDis;
     private TextView inputDis;
     private Button btn_00, btn_01, btn_02, btn_03, btn_04, btn_05, btn_06, btn_07, btn_08, btn_09;
-    private Button btn_add, btn_sub, btn_multi, btn_div, btn_radical, btn_left, btn_right;
+    private Button btn_add, btn_sub, btn_multi, btn_div, btn_radical, btn_square, btn_pi;
+    private Button btn_arc, btn_sin,btn_cos, btn_tan;
     private Button btn_clear, btn_dot, btn_cal;
 
     private String input = "";
@@ -42,8 +43,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_multi   = findViewById(R.id.btn_multi);
         btn_div     = findViewById(R.id.btn_div);
         btn_radical = findViewById(R.id.btn_radical);
-        btn_left    = findViewById(R.id.btn_left);
-        btn_right   = findViewById(R.id.btn_right);
+        btn_square    = findViewById(R.id.btn_square);
+        btn_pi   = findViewById(R.id.btn_pi);
+
+        btn_arc = findViewById(R.id.btn_arc);
+        btn_sin = findViewById(R.id.btn_sin);
+        btn_cos = findViewById(R.id.btn_cos);
+        btn_tan = findViewById(R.id.btn_tan);
 
         btn_clear = findViewById(R.id.btn_clear);
         btn_dot   = findViewById(R.id.btn_dot);
@@ -65,8 +71,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_div.setOnClickListener(this);
         btn_multi.setOnClickListener(this);
         btn_radical.setOnClickListener(this);
-        btn_left.setOnClickListener(this);
-        btn_right.setOnClickListener(this);
+        btn_square.setOnClickListener(this);
+        btn_pi.setOnClickListener(this);
+
+        btn_arc.setOnClickListener(this);
+        btn_sin.setOnClickListener(this);
+        btn_cos.setOnClickListener(this);
+        btn_tan.setOnClickListener(this);
 
         btn_dot.setOnClickListener(this);
         btn_cal.setOnClickListener(this);
@@ -143,12 +154,104 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 input = input + "√";
                 inputDis.setText(input);
                 break;
+            case R.id.btn_square:
+                input = input + "^";
+                inputDis.setText(input);
+                break;
+            case R.id.btn_pi:
+                input = input + "π";
+                inputDis.setText(input);
+                processDis.setText("Push '=' to get value of \u03c0");
+                break;
+            case R.id.btn_arc:
+                input = input + "arc";
+                inputDis.setText(input);
+                break;
+            case R.id.btn_sin:
+                input = input + "sin(x)";
+                inputDis.setText(input);
+                break;
+            case R.id.btn_cos:
+                input = input + "cos(x)";
+                inputDis.setText(input);
+                break;
+            case R.id.btn_tan:
+                input = input + "tan(x)";
+                inputDis.setText(input);
+                break;
             case R.id.btn_cal:
-                processDis.setText(input);
                 Double answer = 0.0;
+                if (input.contains("sin") | input.contains("cos") | input.contains("tan")){
+                    // 截取字符串，分离操作符和操作数
+                    symbol = input.substring(0, input.indexOf(")") + 1);
+                    String num = input.substring(input.indexOf(")") + 1, input.length());
+                    num1 = Double.parseDouble(num);
+                    if (input.contains("arc")){    // 反函数求角度
+                        // 生成并输出提示字符
+                        symbol = symbol.replace("x", num);
+                        processDis.setText(symbol);
+                        String temp =  input.substring(0, input.indexOf("("));
+                        switch (temp){
+                            case "arcsin":
+                                answer = Math.toDegrees(Math.asin(num1));
+                                input = answer + "°";
+                                inputDis.setText(input);
+                                break;
+                            case "arccos":
+                                answer = Math.toDegrees(Math.acos(num1));
+                                input = answer + "°";
+                                inputDis.setText(input);
+                                break;
+                            case "arctan":
+                                answer = Math.toDegrees(Math.atan(num1));
+                                input = answer + "°";
+                                inputDis.setText(input);
+                                break;
+                        }
+                    }else{
+                        // 生成并输出提示字符
+                        num = num + "°";
+                        symbol = symbol.replace("x", num);
+                        processDis.setText(symbol);
+                        String temp =  input.substring(0, input.indexOf("("));
+                        Double arc = Math.toRadians(num1);
+                        switch (temp){
+                            case "sin":
+                                answer = Math.sin(arc);
+                                input = answer + "";
+                                inputDis.setText(input);
+                                break;
+                            case "cos":
+                                answer = Math.cos(arc);
+                                input = answer + "";
+                                inputDis.setText(input);
+                                break;
+                            case "tan":
+                                answer = Math.tan(arc);
+                                input = answer + "";
+                                inputDis.setText(input);
+                                break;
+                        }
+                    }
+                    break;
+                }
+                processDis.setText(input);
                 if (input.contains("√")){
                     Double temp = Double.parseDouble(input.substring(1));
                     answer = Math.sqrt(temp);
+                    input = "" + answer;
+                    inputDis.setText(input);
+                    break;
+                }
+                if (input.contains("^")){
+                    Double temp = Double.parseDouble(input.substring(0, input.indexOf("^")));
+                    answer = Math.pow(temp, 2);
+                    input = "" + answer;
+                    inputDis.setText(input);
+                    break;
+                }
+                if (input.contains("π")){
+                    answer = Math.PI;
                     input = "" + answer;
                     inputDis.setText(input);
                     break;

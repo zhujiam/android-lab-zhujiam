@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">BasicCalculator</string>
+    <string name="equal_sign">=</string>
+    <string name="dot_sign">.</string>
+</resources>
